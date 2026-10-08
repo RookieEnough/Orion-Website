@@ -1,0 +1,19 @@
+# Captions for the screenshots the gallery picks up on its own.
+#
+# One line per file:   file name | Title | Subtitle
+#
+# - Leave the title empty (file.jpg | | Subtitle) to keep the one made from the file name.
+# - Leave the subtitle out (file.jpg | Title) for a title alone.
+# - The gallery shows these files in the order listed here; files not listed
+#   come after them, sorted by name, captioned from their file name.
+# - Lines starting with # are ignored.
+#
+# After editing, run:  node website/tools/build.mjs
+
+new-and-updated.jpg  | New & Updated    | Fresh on the Discover grid
+update-all.jpg       | Update all       | Every pending update, one tap
+app-bundles.jpg      | De-Google bundle | Seven privacy apps, one download
+submit-an-app.jpg    | Submit an app    | Paste an Obtainium export
+app-corrections.jpg  | App corrections  | Fix a listing, earn 50 XP
+badge-archive.jpg    | Badge archive    | Tap a badge to flip it
+maintenance-mode.jpg | Maintenance mode | A dino game while the servers rest

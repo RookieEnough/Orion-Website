@@ -1,0 +1,68 @@
+name: Deploy to Cloudflare Pages
+
+# Rebuilds the site and publishes it to <project>.pages.dev:
+#   - on every push to main
+#   - every 6 hours, so new Orion Store releases and download counts show up
+#     without a commit (releases live in another repo, so they can't trigger this)
+#   - by hand, from the Actions tab (Run workflow)
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+env:
+  # Your site's name on Cloudflare. It becomes https://<name>.pages.dev
+  PAGES_PROJECT: orion-store
+  # The repository whose releases the page lists.
+  RELEASES_REPO: RookieEnough/Orion-Store
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Refresh the release snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$RELEASES_REPO/releases?per_page=100" \
+            --jq '[.[] | select(.draft | not) | {tag: .tag_name, name: (.name // .tag_name), date: (.published_at[:10]), downloads: ([.assets[].download_count] | add // 0), size: ([.assets[] | select(.name | endswith(".apk")) | .size] | first // 0)}]' \
+            > tools/releases.snapshot.json
+
+      - name: Bake the page
+        run: node tools/build.mjs
+
+      - name: Collect the public files
+        # Build tools, docs and repo files are only needed to build, not to visit.
+        run: >
+          rsync -a --exclude _site --exclude .git --exclude .github --exclude tools --exclude '*.md'
+          --exclude LICENSE --exclude .nojekyll --exclude captions.txt ./ _site/
+
+      - name: Publish to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::warning::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID secrets are not set, so nothing was published. See README → Deploy."
+            exit 0
+          fi
+          # Creates the project on the first run; afterwards it already exists and this is skipped.
+          npx --yes wrangler@4 pages project create "$PAGES_PROJECT" --production-branch=main || true
+          npx --yes wrangler@4 pages deploy _site --project-name="$PAGES_PROJECT" --branch=main --commit-dirty=true

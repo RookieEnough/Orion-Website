@@ -1,0 +1,51 @@
+<!doctype html>
+<!-- Source for media/og/orion-og.jpg. Open over HTTP at 1200x630 and screenshot. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Space Grotesk"; src: url(../fonts/space-grotesk-latin-wght-normal.woff2) format("woff2"); font-weight: 300 700; }
+  @font-face { font-family: "Space Mono"; src: url(../fonts/space-mono-latin-400-normal.woff2) format("woff2"); }
+  html, body { margin: 0; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden; position: relative;
+    background:
+      radial-gradient(520px 420px at 970px 320px, rgba(76, 80, 190, .42), transparent 70%),
+      #08080d;
+    color: #f1f1f6; font-family: "Space Grotesk", sans-serif;
+  }
+  canvas { position: absolute; inset: 0; }
+  .eyebrow { position: absolute; left: 80px; top: 96px; font: 400 20px/1 "Space Mono", monospace; letter-spacing: .02em; color: #b9bbff; text-transform: uppercase; }
+  h1 { position: absolute; left: 76px; top: 176px; margin: 0; font-weight: 500; font-size: 84px; line-height: 1.04; letter-spacing: -.035em; }
+  .sub { position: absolute; left: 80px; top: 504px; font-size: 25px; color: #9a9aab; }
+  .url { position: absolute; left: 80px; top: 553px; font: 400 21px/1 "Space Mono", monospace; color: #6f6f82; }
+  svg { position: absolute; left: 800px; top: 130px; height: 370px; filter: drop-shadow(0 30px 60px rgba(40, 42, 140, .55)); }
+</style>
+</head>
+<body>
+<canvas id="c" width="1200" height="630"></canvas>
+<p class="eyebrow">Orion Store</p>
+<h1>The app store<br>with nothing<br>to hide.</h1>
+<p class="sub">Free, open source Android store. No account, no trackers.</p>
+<p class="url">github.com/RookieEnough/Orion-Store</p>
+<svg viewBox="200 240 550 580" aria-hidden="true">
+  <defs><linearGradient id="g" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#b9bbff"/></linearGradient></defs>
+  <g fill="url(#g)">
+    <path d="M506 253.2A30 30 0 0 1 557.2 257.3L666.3 475.7A30 30 0 0 1 638.4 519.1L378.9 509.1A30 30 0 0 1 355.7 461.6Z"/>
+    <circle cx="339.5" cy="679.5" r="140"/>
+    <rect x="500" y="550" width="250" height="250" rx="30"/>
+  </g>
+</svg>
+<script>
+  // Seeded so the card is identical every time it's rebuilt.
+  let s = 7;
+  const rnd = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+  const x = document.getElementById('c').getContext('2d');
+  for (let i = 0; i < 260; i++) {
+    const r = rnd() < .9 ? .6 + rnd() * .5 : 1.1 + rnd() * .7;
+    x.fillStyle = `rgba(225, 226, 255, ${.15 + rnd() * .6})`;
+    x.beginPath(); x.arc(rnd() * 1200, rnd() * 630, r, 0, 7); x.fill();
+  }
+</script>
+</body>
+</html>
