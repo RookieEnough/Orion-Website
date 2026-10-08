@@ -684,7 +684,7 @@ function setupStage() {
 if (motion) {
   const mm = gsap.matchMedia();
   // Phones pin too when they're tall enough to hold a pinned step; short ones keep the stacked layout.
-  mm.add({ desktop: '(min-width: 960px)', mobile: '(max-width: 959px)', tall: '(min-height: 680px)' }, (ctx) => {
+  mm.add({ desktop: '(min-width: 960px)', mobile: '(max-width: 959px)', tall: '(min-height: 600px)' }, (ctx) => {
     const { desktop, tall } = ctx.conditions;
     const pinned = desktop || tall;
     const cleanups = [];
