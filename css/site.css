@@ -617,7 +617,7 @@ html.live .src-mark { color: var(--fg-2); }
   .motion .how-steps { align-self: center; }
 }
 /* Pinned (desktop, or a phone tall enough): the steps share one cell and crossfade. */
-@media (min-width: 960px), (min-height: 680px) {
+@media (min-width: 960px), (min-height: 600px) {
   .motion .how-progress { display: flex; }
   .motion .how-steps { gap: 0; }
   .motion .step {
@@ -635,7 +635,7 @@ html.live .src-mark { color: var(--fg-2); }
   }
 }
 /* A pinned phone fits the bar, the shapes and the tallest step (the code) in one screen. */
-@media (max-width: 959px) and (min-height: 680px) {
+@media (max-width: 959px) and (min-height: 600px) {
   .motion .how-grid { gap: 24px; }
   .webgl .how-head { padding-bottom: 160px; }
   .motion .step { gap: 12px; }
@@ -782,7 +782,7 @@ html:not(.show-slots) .row-shot.is-missing { display: none; }
   mix-blend-mode: screen;
 }
 /* A tall phone pins the grid (setupPhone): the phone on top, one row at a time under it. */
-@media (max-width: 959px) and (min-height: 680px) {
+@media (max-width: 959px) and (min-height: 600px) {
   .motion .inside-grid { display: grid; align-content: start; gap: 24px; height: 100svh; padding-top: calc(var(--nav-h) + 8px); }
   .motion .phone-col { display: flex; justify-content: center; perspective: 1600px; }
   .motion .phone { width: min(230px, 56vw, calc((100svh - var(--nav-h) - 350px) * .465)); padding: 8px; border-radius: 30px; }
