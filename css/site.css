@@ -802,6 +802,14 @@ html:not(.show-slots) .row-shot.is-missing { display: none; }
     clip: rect(0 0 0 0); clip-path: inset(50%);
   }
 }
+/* Shorter phones (600-719px tall): tighter layout so the phone stays a usable size. */
+@media (max-width: 959px) and (min-height: 600px) and (max-height: 719px) {
+  .motion .phone { width: min(260px, 62vw, calc((100svh - var(--nav-h) - 270px) * .465)); }
+  .motion .row-copy { gap: 10px; }
+  .motion .row-copy h3 { font-size: clamp(1.2rem, 5vw, 1.45rem); }
+  .motion .row-copy > p { font-size: .9rem; }
+  .motion .facts { margin-top: 2px; font-size: .82rem; }
+}
 
 /* ---------- Film ---------- */
 .film { padding-block: var(--sec); }
