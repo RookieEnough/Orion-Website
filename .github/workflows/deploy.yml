@@ -1,6 +1,6 @@
 name: Deploy to Cloudflare Pages
 
-# Rebuilds the site and publishes it to <project>.pages.dev:
+# Rebuilds the site and publishes it to every <project>.pages.dev in PAGES_PROJECTS:
 #   - on every push to main
 #   - every 6 hours, so new Orion Store releases and download counts show up
 #     without a commit (releases live in another repo, so they can't trigger this)
@@ -20,8 +20,9 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # Your site's name on Cloudflare. It becomes https://<name>.pages.dev
-  PAGES_PROJECT: orion-store
+  # Your site's names on Cloudflare. Each becomes https://<name>.pages.dev.
+  # Both stay live; every deploy publishes the same site to all of them.
+  PAGES_PROJECTS: "orion-store orionstore"
   # The repository whose releases the page lists.
   RELEASES_REPO: RookieEnough/Orion-Store
 
@@ -63,6 +64,8 @@ jobs:
             echo "::warning::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID secrets are not set, so nothing was published. See README → Deploy."
             exit 0
           fi
-          # Creates the project on the first run; afterwards it already exists and this is skipped.
-          npx --yes wrangler@4 pages project create "$PAGES_PROJECT" --production-branch=main || true
-          npx --yes wrangler@4 pages deploy _site --project-name="$PAGES_PROJECT" --branch=main --commit-dirty=true
+          for PAGES_PROJECT in $PAGES_PROJECTS; do
+            # Creates the project on the first run; afterwards it already exists and this is skipped.
+            npx --yes wrangler@4 pages project create "$PAGES_PROJECT" --production-branch=main || true
+            npx --yes wrangler@4 pages deploy _site --project-name="$PAGES_PROJECT" --branch=main --commit-dirty=true
+          done
