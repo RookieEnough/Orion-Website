@@ -749,7 +749,7 @@ html:not(.show-slots) .row-shot.is-missing { display: none; }
 .phone::after { top: 34%; height: 5%; }
 .phone-screen {
   position: relative;
-  aspect-ratio: 720 / 1520;
+  aspect-ratio: 739 / 1603;
   border-radius: clamp(30px, 2.8vw, 43px);
   overflow: hidden;
   background: var(--ink-1);
