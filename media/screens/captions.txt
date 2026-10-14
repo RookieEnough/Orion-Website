@@ -1,16 +1,15 @@
-# Captions for the Orion RE native app screenshots.
-#
-# One line per file:   file name | Title | Subtitle
+# Accurate captions for Orion RE native app screenshots.
+# Verified against the actual image content on 2026-10-14.
 
-home.jpg      | Discover       | Browse and search the catalog
-detail.jpg    | App details    | Versions, variants and changelogs
-myapps.jpg    | My Apps        | Installed, updates and downloads
-settings.jpg  | Settings       | Themes, install options and more
-badges.jpg    | Badges         | Earn XP and collect achievements
-quest.jpg     | Quests         | Daily challenges and rewards
-profile.jpg   | Profile        | Your pilot card and stats
-dark.jpg      | Dark mode      | Easy on the eyes at night
-about.jpg     | About          | Version info and credits
-pc.jpg        | PC apps        | Desktop software catalog
-welcome.jpg   | Welcome        | First-run experience
-xtra.jpg      | Extras         | More ways to explore
+home.jpg      | Discover home      | Featured apps, recommendations and new arrivals
+detail.jpg    | App details        | Version info, screenshots and one-tap download
+myapps.jpg    | My Apps            | Downloaded apps ready to install
+settings.jpg  | Settings           | Toggles for updates, theme and install behavior
+badges.jpg    | Badge archive      | Earned badges and locked achievements
+quest.jpg     | New mission        | Chapter 2: The Forkening quest line
+profile.jpg   | Pilot card         | Level 30 Silver pilot with stats and badges
+dark.jpg      | Dark mode          | Full dark theme across the catalog
+about.jpg     | About Orion        | Developer profile, links and support options
+pc.jpg        | PC catalog         | Desktop apps in dark mode
+welcome.jpg   | Welcome            | Native 2.0 onboarding and feature highlights
+xtra.jpg      | Orion Xtra         | Guardian, Sentinel and installer settings
