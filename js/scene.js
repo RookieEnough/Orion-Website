@@ -448,7 +448,7 @@ export async function init(canvas, stage) {
     const dt = Math.min(raw, 1 / 20);
     // A device that can't hold ~40fps for most of 1.5s trades resolution for frames, a
     // quarter step at a time, down to 1x. The first two seconds are skipped (warm-up, page load).
-    // ponytail: one-way; a display held at 30Hz (battery saver) steps down too.
+    // Note: one-way; a display held at 30Hz (battery saver) steps down too.
     if (cap > 1 && ++seen > 120) {
       slow += raw > 0.025;
       if (seen === 210) {

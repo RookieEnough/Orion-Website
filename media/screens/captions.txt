@@ -13,3 +13,10 @@ about.jpg     | About Orion        | Developer profile, links and support option
 pc.jpg        | PC catalog         | Desktop apps in dark mode
 welcome.jpg   | Welcome            | Native 2.0 onboarding and feature highlights
 xtra.jpg      | Orion Xtra         | Guardian, Sentinel and installer settings
+guardian.jpg       | Guardian           | Apps ranked by risky permissions
+sentinel.jpg       | Sentinel           | System protected, three scan modes
+rapid-scan.jpg     | Rapid Scan         | Checking installed apps for threats
+network-sentry.jpg | Connection security | Live checks on your current network
+hall-of-fame.jpg   | Hall of Fame       | Top contributors ranked by XP
+camp.jpg           | Resting at camp    | Next boss: the Void Dragon
+maintenance.jpg    | Maintenance mode   | A dino game while the servers rest
